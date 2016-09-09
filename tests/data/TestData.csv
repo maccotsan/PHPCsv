@@ -1,0 +1,1 @@
+col_string_en,col_string_jp,col_number,col_number_conma,notecsv read test data.,CSVテストデータ。,12345678,"12,345,678 ","カンマ区切りの数値は""""で括られる。"minus data.,マイナスデータ。,-12345678,-12345678,number function.,数値書式。,12345678 ,"12,345,678 ",数値書式の場合、CSV出力すると後ろに半角スペースが自動挿入されるuser function.,ユーザ定義。,12345678,"12,345,678",半角スペースを取る場合の書式設定
