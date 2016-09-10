@@ -5,22 +5,14 @@ please rewrite your composer.json.
 ````
 ・・・
     "repositories": [
-     {
-      "type":"package",
-        "package": {
-          "name": "maccotsan/csv",
-          "version":"master",
-          "source": {       
-            "url": "https://github.com/maccotsan/PHPCsv.git",
-            "type": "git",
-            "reference":"master"
-          }
+            {
+                "type": "vcs",
+                "url": "https://github.com/maccotsan/PHPCsv.git"
+            }
+        ],
+        "require": {
+            "maccotsan/csv": "dev-master"
         }
-      }
-    ],
-    "require": {
-        "maccotsan/csv: "*"
-    },
 ・・・
 ````
 
