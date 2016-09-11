@@ -24,7 +24,8 @@ class Csv
 		'dstEncording' => 'utf-8',		// 読み込み後に扱う文字コード
 		'useHeader' => false,			// ヘッダ行をフィールド名として利用するかどうか
 		'fields' => [],					// 任意のフィールド名を利用する場合に指定する
-		'ignoreHeader' => false			// ヘッダ行を無視するかどうか
+		'ignoreHeader' => false,		// ヘッダ行を無視するかどうか
+		'ignoreEmptyRow' => false		// すべての列が空の行を無視するかどうか（0を含む）
 	];
 
 	/**
@@ -90,7 +91,14 @@ class Csv
 			array_shift($rows);
 		}
 
-	    if ($options['fields'] !== []) {
+		if ($options['ignoreEmptyRow']) {
+			$rows = array_filter($rows, function($row) {
+				$a = array_filter($row);
+				return !empty($a);
+			});
+		}
+
+	 	if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
 			$rows = Csv::setFieldKeys($rows, $options['fields']);
 		} else if ($options['useHeader'] && !$options['ignoreHeader']) {

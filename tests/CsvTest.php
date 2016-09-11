@@ -16,6 +16,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 {
 	private $dataPath = "tests/data/TestData.csv"; // UTF-8, CR
 	private $dataNoFieldsPath = "tests/data/TestDataNoFields.csv"; // UTF-8, CR
+	private $dataEmptyRowPath = "tests/data/TestDataEmptyRow.csv"; // UTF-8, CR
 	private $dataIrregularPath = "tests/data/TestDataIrregular.csv"; // UTF-8, CR
 	private $dataFromExcelPath = "tests/data/TestDataFromExcel.csv"; // SJIS, CR+LF
 
@@ -85,6 +86,27 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 			"col_number" => "12345678",
 			"col_number_conma" => "12,345,678",
 			"note" => "半角スペースを取る場合の書式設定"
+		]
+	];
+
+	private $expectedEmptyRow = [
+		[
+			"a" => "",
+			"b" => "2",
+			"c" => "",
+			"d" => "0"
+		],
+		[
+			"a" => "",
+			"b" => "3",
+			"c" => "",
+			"d" => "0"
+		],
+		[
+			"a" => "",
+			"b" => "5",
+			"c" => "",
+			"d" => "0"
 		]
 	];
 
@@ -209,6 +231,17 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 		// 内容一致（任意のフィールド名を指定する）
 		$csvRows = Csv::read($this->dataNoFieldsPath, [ 'srcEncoding' => 'utf-8', 'fields' => $this->testFields ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
+	}
+
+	/**
+	 * フィールド列が無いCSVの読み込み
+	 */
+	public function testEmptyRowRead()
+	{
+		// 内容一致（任意のフィールド名を指定する）
+		$csvRows = Csv::read($this->dataEmptyRowPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true, 'ignoreEmptyRow' => true ]);
+		echo var_dump($csvRows);
+		$this->assertEquals($this->expectedEmptyRow, $csvRows);
 	}
 
 	/**
