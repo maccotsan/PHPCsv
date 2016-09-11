@@ -4,9 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "abba6c918fa253c28735225b1b92d06f",
-    "content-hash": "d25305206192c8eca7ac8919b59e11ba",
-    "packages": [],
+    "hash": "e78af0184f72e9427a80ee0ad65dc7b3",
+    "content-hash": "a1bbc0731b67484ed76a4649c5d5ea54",
+    "packages": [
+        {
+            "name": "maccotsan/stringtool",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maccotsan/PHPStringTool.git",
+                "reference": "ed7304ca1806f3bf2bd2c78ec8222ca5a203ba34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maccotsan/PHPStringTool/zipball/ed7304ca1806f3bf2bd2c78ec8222ca5a203ba34",
+                "reference": "ed7304ca1806f3bf2bd2c78ec8222ca5a203ba34",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "maccotsan\\StringTool\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "maccotsan\\StringTool\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "maccotsan",
+                    "email": "maccotsan@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/maccotsan/PHPStringTool/",
+            "keywords": [
+                "stringtool"
+            ],
+            "support": {
+                "source": "https://github.com/maccotsan/PHPStringTool/tree/master",
+                "issues": "https://github.com/maccotsan/PHPStringTool/issues"
+            },
+            "time": "2016-09-11 19:38:14"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1308,9 +1364,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "maccotsan/stringtool": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.6"
+    },
     "platform-dev": []
 }

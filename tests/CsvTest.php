@@ -240,7 +240,6 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	{
 		// 内容一致（任意のフィールド名を指定する）
 		$csvRows = Csv::read($this->dataEmptyRowPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true, 'ignoreEmptyRow' => true ]);
-		echo var_dump($csvRows);
 		$this->assertEquals($this->expectedEmptyRow, $csvRows);
 	}
 

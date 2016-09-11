@@ -9,6 +9,7 @@
 namespace maccotsan\Csv;
 
 use \SplFileObject;
+use \maccotsan\StringTool;
 
 /**
  * Class Csv
@@ -55,7 +56,7 @@ class Csv
 		$options = array_merge(Csv::$readOptionDefaults, $options);
 
 		// 改行コードがCRだと正常に読み込めないので、LFに揃える。
-		$buf = Csv::convertEOL($buf);
+		$buf = StringTool\GeneralSupport::convertEOL($buf);
 
 		// ref: http://php-archive.net/php/csv-tsv-array/
 		$temp = tmpfile();
@@ -131,17 +132,5 @@ class Csv
 			$newRows[] = $newRow;
 		}
 		return $newRows;
-	}
-
-	/**
-	 * 文字列の改行コードを揃える
-	 *
-	 * @param string $string 文字列
-	 * @param string $to 変換後の改行コード
-	 * @return mixed 文字列
-	 */
-	private static function convertEOL($string, $to = "\n")
-	{
-    	return preg_replace("/\r\n|\r|\n/", $to, $string);
 	}
 }
