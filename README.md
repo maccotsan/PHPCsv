@@ -20,7 +20,8 @@ please rewrite your composer.json.
 
 ### Read
 ````
-$csvRows = Csv::read("data.csv", $options);
+use maccotsan\Csv;
+$csvRows = Csv\Reader::read("data.csv", $options);
 ````
 
 #### Options

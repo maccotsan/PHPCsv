@@ -9,10 +9,10 @@
 namespace maccotsan\Csv;
 
 /**
- * Class CsvTest
+ * Class ReaderTest
  * @package maccotsan\Csv
  */
-class CsvTest extends \PHPUnit_Framework_TestCase
+class ReaderTest extends \PHPUnit_Framework_TestCase
 {
 	private $dataPath = "tests/data/TestData.csv"; // UTF-8, CR
 	private $dataNoFieldsPath = "tests/data/TestDataNoFields.csv"; // UTF-8, CR
@@ -211,15 +211,15 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	public function testRead()
 	{
 		// 内容一致
-		$csvRows = Csv::read($this->dataPath, [ 'srcEncoding' => 'utf-8' ]);
+		$csvRows = Reader::read($this->dataPath, [ 'srcEncoding' => 'utf-8' ]);
 		$this->assertEquals($this->expectedPlain, $csvRows);
 
 		// 内容一致（ヘッダをフィールド名にする）
-		$csvRows = Csv::read($this->dataPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true ]);
+		$csvRows = Reader::read($this->dataPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 
 		// 内容一致（ヘッダを無視してフィールド名を指定する）
-		$csvRows = Csv::read($this->dataPath, [ 'srcEncoding' => 'utf-8', 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
+		$csvRows = Reader::read($this->dataPath, [ 'srcEncoding' => 'utf-8', 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 
@@ -229,7 +229,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	public function testNoFieldsRead()
 	{
 		// 内容一致（任意のフィールド名を指定する）
-		$csvRows = Csv::read($this->dataNoFieldsPath, [ 'srcEncoding' => 'utf-8', 'fields' => $this->testFields ]);
+		$csvRows = Reader::read($this->dataNoFieldsPath, [ 'srcEncoding' => 'utf-8', 'fields' => $this->testFields ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 
@@ -239,7 +239,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	public function testEmptyRowRead()
 	{
 		// 内容一致（任意のフィールド名を指定する）
-		$csvRows = Csv::read($this->dataEmptyRowPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true, 'ignoreEmptyRow' => true ]);
+		$csvRows = Reader::read($this->dataEmptyRowPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true, 'ignoreEmptyRow' => true ]);
 		$this->assertEquals($this->expectedEmptyRow, $csvRows);
 	}
 
@@ -251,14 +251,14 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 		// 内容一致
 		// 空白行スキップ
 		// 先頭カラム空白でも読み込み
-		$csvRows = Csv::read($this->dataIrregularPath, [ 'srcEncoding' => 'utf-8']);
+		$csvRows = Reader::read($this->dataIrregularPath, [ 'srcEncoding' => 'utf-8']);
 		$this->assertEquals($this->expectedIrregularPlain, $csvRows);
 
 		// 内容一致（ヘッダをフィールド名にする）
 		// 空白行スキップ
 		// 先頭カラム空白でも読み込み
 		// フィールドが指定された場合は、カラム数が足りない・多い場合でもフィールド数に合わさる
-		$csvRows = Csv::read($this->dataIrregularPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true ]);
+		$csvRows = Reader::read($this->dataIrregularPath, [ 'srcEncoding' => 'utf-8', 'useHeader' => true ]);
 		$this->assertEquals($this->expectedIrregularFields, $csvRows);
 	}
 
@@ -268,15 +268,15 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	public function testReadFromExcel()
 	{
 		// 内容一致
-		$csvRows = Csv::read($this->dataFromExcelPath);
+		$csvRows = Reader::read($this->dataFromExcelPath);
 		$this->assertEquals($this->expectedPlain, $csvRows);
 
 		// 内容一致（ヘッダをフィールド名にする）
-		$csvRows = Csv::read($this->dataFromExcelPath, [ 'useHeader' => true ]);
+		$csvRows = Reader::read($this->dataFromExcelPath, [ 'useHeader' => true ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 
 		// 内容一致（ヘッダを無視してフィールド名を指定する）
-		$csvRows = Csv::read($this->dataFromExcelPath, [ 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
+		$csvRows = Reader::read($this->dataFromExcelPath, [ 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 
@@ -287,7 +287,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 	{
 		// 内容一致
 		$buf = file_get_contents($this->dataPath);
-		$csvRows = Csv::readFromString($buf);
+		$csvRows = Reader::readFromString($buf);
 		$this->assertEquals($this->expectedPlain, $csvRows);
 	}
 }

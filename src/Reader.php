@@ -13,9 +13,9 @@ use \maccotsan\StringTool;
 
 /**
  * Class Csv
- * @package maccotsan\Csv
+ * @package maccotsan\Reader
  */
-class Csv
+class Reader
 {
 	/**
 	 * @var array 読み込みオプションのデフォルト値
@@ -38,10 +38,10 @@ class Csv
 	 */
 	public static function read($filePath, $options = [])
 	{
-		$options = array_merge(Csv::$readOptionDefaults, $options);
+		$options = array_merge(Reader::$readOptionDefaults, $options);
 
 		$buf = mb_convert_encoding(file_get_contents($filePath), $options['dstEncording'], $options['srcEncoding']);
-		return Csv::readFromString($buf, $options);
+		return Reader::readFromString($buf, $options);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Csv
 	 */
 	public static function readFromString($buf, $options = [])
 	{
-		$options = array_merge(Csv::$readOptionDefaults, $options);
+		$options = array_merge(Reader::$readOptionDefaults, $options);
 
 		// 改行コードがCRだと正常に読み込めないので、LFに揃える。
 		$buf = StringTool\GeneralSupport::convertEOL($buf);
@@ -76,7 +76,7 @@ class Csv
 		}
 
 		fclose($temp);
-		return Csv::postProcessing($rows, $options);
+		return Reader::postProcessing($rows, $options);
 	}
 
 	/**
@@ -101,11 +101,11 @@ class Csv
 
 	 	if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
-			$rows = Csv::setFieldKeys($rows, $options['fields']);
+			$rows = Reader::setFieldKeys($rows, $options['fields']);
 		} else if ($options['useHeader'] && !$options['ignoreHeader']) {
 			// ヘッダ行をフィールド名として使用する。
 			$fields = array_shift($rows);
-			$rows = Csv::setFieldKeys($rows, $fields);
+			$rows = Reader::setFieldKeys($rows, $fields);
 		}
 
 		return $rows;
