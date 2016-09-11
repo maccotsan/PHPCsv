@@ -22,7 +22,7 @@ class Csv
 	private static $readOptionDefaults = [
 		'srcEncoding' => 'sjis-win',	// 読み込むCSVファイルの文字コード
 		'dstEncording' => 'utf-8',		// 読み込み後に扱う文字コード
-		'useHeader' => true,			// ヘッダ行をフィールド名として利用するかどうか
+		'useHeader' => false,			// ヘッダ行をフィールド名として利用するかどうか
 		'fields' => [],					// 任意のフィールド名を利用する場合に指定する
 		'ignoreHeader' => false			// ヘッダ行を無視するかどうか
 	];
