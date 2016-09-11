@@ -195,6 +195,10 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 		// 内容一致（ヘッダをフィールド名にする）
 		$csvRows = Csv::read($this->dataPath, [ 'srcEncoding' => 'utf-8']);
 		$this->assertEquals($this->expectedFields, $csvRows);
+
+		// 内容一致（ヘッダを無視してフィールド名を指定する）
+		$csvRows = Csv::read($this->dataPath, [ 'srcEncoding' => 'utf-8', 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
+		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 
 	/**
@@ -237,6 +241,10 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
 		// 内容一致（ヘッダをフィールド名にする）
 		$csvRows = Csv::read($this->dataFromExcelPath);
+		$this->assertEquals($this->expectedFields, $csvRows);
+
+		// 内容一致（ヘッダを無視してフィールド名を指定する）
+		$csvRows = Csv::read($this->dataFromExcelPath, [ 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 }

@@ -20,10 +20,11 @@ class Csv
 	 * @var array 読み込みオプションのデフォルト値
 	 */
 	private static $readOptionDefaults = [
-		'srcEncoding' => 'sjis-win', // 読み込むCSVファイルの文字コード
-		'dstEncording' => 'utf-8', // 読み込み後に扱う文字コード
-		'useHeader' => true, // ヘッダ列をフィールド名として利用するかどうか
-		'fields' => [] // 任意のフィールド名を利用する場合に指定する
+		'srcEncoding' => 'sjis-win',	// 読み込むCSVファイルの文字コード
+		'dstEncording' => 'utf-8',		// 読み込み後に扱う文字コード
+		'useHeader' => true,			// ヘッダ行をフィールド名として利用するかどうか
+		'fields' => [],					// 任意のフィールド名を利用する場合に指定する
+		'ignoreHeader' => false			// ヘッダ行を無視するかどうか
 	];
 
 	/**
@@ -85,10 +86,14 @@ class Csv
 	 */
 	private static function postProcessing($rows, $options)
 	{
+		if ($options['ignoreHeader']) {
+			array_shift($rows);
+		}
+
 	    if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
 			$rows = Csv::setFieldKeys($rows, $options['fields']);
-		} else if ($options['useHeader']) {
+		} else if ($options['useHeader'] && !$options['ignoreHeader']) {
 			// ヘッダ行をフィールド名として使用する。
 			$fields = array_shift($rows);
 			$rows = Csv::setFieldKeys($rows, $fields);
