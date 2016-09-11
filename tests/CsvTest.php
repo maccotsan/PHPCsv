@@ -280,4 +280,15 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 		$csvRows = Csv::read($this->dataFromExcelPath, [ 'ignoreHeader' => true, 'fields' => $this->testFields  ]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
+
+	/**
+	 * 文字列からCSV読み込み
+	 */
+	public function testReadFromString()
+	{
+		// 内容一致
+		$buf = file_get_contents($this->dataPath);
+		$csvRows = Csv::readFromString($buf);
+		$this->assertEquals($this->expectedPlain, $csvRows);
+	}
 }
