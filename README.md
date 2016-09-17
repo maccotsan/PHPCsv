@@ -1,6 +1,8 @@
 # maccotsan\Csv
 
 [![Build Status](https://travis-ci.org/maccotsan/PHPCsv.svg?branch=master)](https://travis-ci.org/maccotsan/PHPCsv)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maccotsan/PHPCsv/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maccotsan/PHPCsv/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/maccotsan/PHPCsv/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/maccotsan/PHPCsv/?branch=master)
 
 ## Install
 please rewrite your composer.json.
