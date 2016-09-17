@@ -1,5 +1,7 @@
 # maccotsan\Csv
 
+[![Build Status](https://travis-ci.org/maccotsan/PHPCsv.svg?branch=master)](https://travis-ci.org/maccotsan/PHPCsv)
+
 ## Install
 please rewrite your composer.json.
 ````
