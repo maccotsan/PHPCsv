@@ -36,6 +36,9 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit",
-        "cs": "phpcs --standard=ruleset.xml src/* tests/*"
+		"cs": [
+			"phpcs --config-set encoding utf-8",
+			"phpcs --standard=ruleset.xml src/* tests/*"
+		]
     }
 }
