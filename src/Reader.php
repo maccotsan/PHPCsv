@@ -102,7 +102,7 @@ class Reader
 	 	if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
 			$rows = Reader::setFieldKeys($rows, $options['fields']);
-		} else if ($options['useHeader'] && !$options['ignoreHeader']) {
+		} elseif ($options['useHeader'] && !$options['ignoreHeader']) {
 			// ヘッダ行をフィールド名として使用する。
 			$fields = array_shift($rows);
 			$rows = Reader::setFieldKeys($rows, $fields);
@@ -118,7 +118,8 @@ class Reader
 	 * @param array $fields フィールド名の配列
 	 * @return array CSV配列
 	 */
-	private static function setFieldKeys($rows, $fields) {
+	private static function setFieldKeys($rows, $fields)
+	{
 		$newRows = [];
 		foreach ($rows as $row) {
 			$newRow = [];
