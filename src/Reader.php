@@ -93,7 +93,7 @@ class Reader
 		}
 
 		if ($options['ignoreEmptyRow']) {
-			$rows = array_filter($rows, function($row) {
+			$rows = array_filter($rows, function ($row) {
 				$a = array_filter($row);
 				return !empty($a);
 			});
