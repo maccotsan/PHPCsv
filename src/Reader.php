@@ -38,10 +38,10 @@ class Reader
 	 */
 	public static function read($filePath, $options = [])
 	{
-		$options = array_merge(Reader::$readOptionDefaults, $options);
+		$options = array_merge(self::$readOptionDefaults, $options);
 
 		$buf = mb_convert_encoding(file_get_contents($filePath), $options['dstEncording'], $options['srcEncoding']);
-		return Reader::readFromString($buf, $options);
+		return self::readFromString($buf, $options);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Reader
 	 */
 	public static function readFromString($buf, $options = [])
 	{
-		$options = array_merge(Reader::$readOptionDefaults, $options);
+		$options = array_merge(self::$readOptionDefaults, $options);
 
 		// 改行コードがCRだと正常に読み込めないので、LFに揃える。
 		$buf = StringTool\GeneralSupport::convertEOL($buf);
@@ -76,7 +76,7 @@ class Reader
 		}
 
 		fclose($temp);
-		return Reader::postProcessing($rows, $options);
+		return self::postProcessing($rows, $options);
 	}
 
 	/**
@@ -101,11 +101,11 @@ class Reader
 
 	 	if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
-			$rows = Reader::setFieldKeys($rows, $options['fields']);
+			$rows = self::setFieldKeys($rows, $options['fields']);
 		} elseif ($options['useHeader'] && !$options['ignoreHeader']) {
 			// ヘッダ行をフィールド名として使用する。
 			$fields = array_shift($rows);
-			$rows = Reader::setFieldKeys($rows, $fields);
+			$rows = self::setFieldKeys($rows, $fields);
 		}
 
 		return $rows;
