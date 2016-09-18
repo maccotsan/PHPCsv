@@ -36,6 +36,9 @@ $csvRows = Csv\Reader::read("data.csv", $options);
 * 'ignoreHeader' default false			// ヘッダ行を無視するかどうか
 * 'ignoreEmptyRow' default false        // すべての列が空の行を無視するかどうか（0を含む）
 
+## Document
+https://maccotsan.github.io/PHPCsv/
+
 ### UnitTest
 ````
 composer install --dev

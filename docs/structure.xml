@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="2.8.5">
+  <partials/>
+  <file path="Reader.php" generated-path="Reader.html" hash="c7c218d4dc2c022dac5b57e6abdb1c03" package="Default">
+    <docblock line="0">
+      <description>maccotsan/Csv</description>
+      <long-description></long-description>
+      <tag name="copyright" line="0" description="2016 maccotsan &lt;maccotsan@gmail.com&gt;"/>
+      <tag name="license" line="0" description="The MIT License (MIT)"/>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="SplFileObject">\SplFileObject</namespace-alias>
+    <namespace-alias name="StringTool">\maccotsan\StringTool</namespace-alias>
+    <class final="false" abstract="false" namespace="maccotsan\Csv" line="18" package="maccotsan\Reader">
+      <extends/>
+      <name>Reader</name>
+      <full_name>\maccotsan\Csv\Reader</full_name>
+      <docblock line="18">
+        <description>Class Csv</description>
+        <long-description></long-description>
+        <tag name="package" line="18" description="maccotsan\Reader"/>
+      </docblock>
+      <property static="true" visibility="private" namespace="maccotsan\Csv" line="23" package="maccotsan\Reader">
+        <name>$readOptionDefaults</name>
+        <full_name>\maccotsan\Csv\Reader::readOptionDefaults</full_name>
+        <default>array('srcEncoding' =&gt; 'sjis-win', 'dstEncording' =&gt; 'utf-8', 'useHeader' =&gt; false, 'fields' =&gt; array(), 'ignoreHeader' =&gt; false, 'ignoreEmptyRow' =&gt; false)</default>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="23" description="&lt;p&gt;読み込みオプションのデフォルト値&lt;/p&gt;" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="39" package="maccotsan\Reader">
+        <name>read</name>
+        <full_name>\maccotsan\Csv\Reader::read()</full_name>
+        <docblock line="39">
+          <description>CSVをファイルから読み込む。</description>
+          <long-description></long-description>
+          <tag name="param" line="39" description="&lt;p&gt;ファイルパス&lt;/p&gt;" type="string" variable="$filePath">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="39" description="CSV配列" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$filePath</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="54" package="maccotsan\Reader">
+        <name>readFromString</name>
+        <full_name>\maccotsan\Csv\Reader::readFromString()</full_name>
+        <docblock line="54">
+          <description>CSVを文字列から読み込む</description>
+          <long-description></long-description>
+          <tag name="param" line="54" description="&lt;p&gt;CSV文字列&lt;/p&gt;" type="string" variable="$buf">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="54" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="54" description="CSV配列" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$buf</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="89" package="maccotsan\Reader">
+        <name>postProcessing</name>
+        <full_name>\maccotsan\Csv\Reader::postProcessing()</full_name>
+        <docblock line="89">
+          <description>読み込み後の加工を行う</description>
+          <long-description></long-description>
+          <tag name="param" line="89" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="89" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="89" description="CSV配列" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$rows</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="121" package="maccotsan\Reader">
+        <name>setFieldKeys</name>
+        <full_name>\maccotsan\Csv\Reader::setFieldKeys()</full_name>
+        <docblock line="121">
+          <description>カラムをフィールド名=&gt;値の形式に変換する。</description>
+          <long-description></long-description>
+          <tag name="param" line="121" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="121" description="&lt;p&gt;フィールド名の配列&lt;/p&gt;" type="array" variable="$fields">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="121" description="CSV配列" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$rows</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$fields</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <source>eJzFVl1vE0cUfV7/igFZxEYEQx+qyuCUKiRtVSpQgvpirGiymbWXrndXM+NEUYWU9VJIShAUUejHSygUGiJSVVQCSoAfM2ySPvEXeufDu7ZxAkWtKsXR7uy955659547c/TDsBHmSvv359B+1MS2HXCG/dIom4UFuXbMDsJ56tYbHL136PD7mQ06mj4eqzex6x20g+aIcvFcm/iMoNMNgj7/9DQ6Yd4L8FIEi1Iu5+MmYSG2SQZ4BoIeyeVaYHhmMvTGXY+cnD5LbH5Er2WGk5y6fv10EHhgb7iPepgxpHmjY4D8Ja53g08QPEOoCm4rU7PwVc6SCJb0msUUYUrxPNq+/0BEL7afb8B/0b4v4pui/UjE90T8UETrIr4o4u9Ee1XEayJeTBbuSP9SzgqpO4s5QYxj7tooTyHGyZC7gX+cOLjlcYYqqJqzrCFG7THfDmZgH0OoMoKG2FmXDc+5/tABVCp1xW8vjE5+oaLdEu07MmC0vnnjYvIAGD0U8YaIlyTeDOMSj2aALe4Mf9CPFr1Ini+LaG1z6XcRXRiAA5n+RCVGgTjYY0RBiPh7EcciXti+tSza1xSh28oNMrCUXL0sol9FdFNEd5PF1a3r8PyDaF8SEfytQiR4kOiOS7wZpqCrNYX78unTzfNXVE5fQ2xf68ZKVv5Iri5K7ssXk/Uf9aIEdet+QN+K9db5W9t3bwymplHGmiGfnwjmMhzLkjjgEj2BzQHRZBF2uby1+ic87w77amPxkNzE1TWo4qsNyG8N+jVtN1lXk8m0tJdEe6m79mKhLW11e4aY4ib0lmx+lHdAH6cwb6AehPhb0X7Sba77OR+oLmS7Nbb2ooS3qG/cgOJfX1+GHXf6uzUN2u60t9PybYmKZJsXUkIHsmjQ7LVizgKNWV1rCnuqSWidFBjxnHJ5gFAylKJMmpWfbjng25yesgN/llA+RYx+CjLwVJ1w+YUTn7OMSzGDqfZqpNb9pVuNNYhnWSYNmp5kN06Dpp47BUmlh5517rWyammpXumv6U4FlRsE59Tz/6jijrv8N0sJgtq8/kRpx0weENTohIhWYIhsPridPH4MMu9KWSSi+yI6L6dEdE8sRCfG5Ri4EotoUUpOaqTTH9nRcOZj4hOKvclWGAaUl8umb8ZOnlB7S7lQ4pRRg/OwXCrBYTiMqd1wZ8lBn3D5XrLZ7DCHn9prSYbipBlCLN4MZZ8VVMPkm4RjWIRqEtxU7ShXpmYwxwXlocycOepyohcOIMNDthuM/pnUTuJJaMDzyRzqOQ0LKlJ1qEVd06vKdHiEET7u4Tor9JiXyxNjHx2fgh4wuDSY09VUdGDmYbuBtGIQZijvytGX91yfFJGstuU6qHAYVSoVZActH+Lrb/v2oT3qsXqoBpZy3MJQlFWNftMTUTpbUpOu3yIyGujEMgyqNeCg3OUHqR/Lsb2Aka5c9WgwDBg/RQObMKa6U4LsLMLXTrz15JuV5NEvoEzF8EK/CI3AVHJ69PLfKLD3npBK8A2b1PKT9chGV8/pVzMl07JkDdfhGqSYZnmQd3rqdfw7TaJxoDU4oR02KVm1YBysPB5krsKmhdxDZJxCHuvlcykp1MfKXBNqaE9FjR0d4423BXMxUOMg3YLuHqkNCfoZmWf9ac3iaUKIwLHfSyi7FdV03++e/n90X3r57EV2XzLcNaE0o/2FfJvNaYis7qYG6nOfWEQbOMFddmUg0coI3G+lgJ79nGxA7teSO0ubV37qIvxuSjJ7HJSZ9W6ndxLSbikxhxgM1onBo1BRl6Mw629jnRr3DE61j2x0qoWOLmQfuQzoKNhq3q0VO586oFXtoQaisdGy0Z24s/XevcYuG61mU3q66hfdAVkDGBPVA+dyfwNUAIfO</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <package name="maccotsan" full_name="maccotsan">
+    <package name="Reader" full_name="maccotsan\Reader"/>
+  </package>
+  <namespace name="maccotsan" full_name="maccotsan">
+    <namespace name="Csv" full_name="maccotsan\Csv"/>
+  </namespace>
+  <deprecated count="0"/>
+</project>
