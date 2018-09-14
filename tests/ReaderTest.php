@@ -12,7 +12,7 @@ namespace maccotsan\Csv;
  * Class ReaderTest
  * @package maccotsan\Csv
  */
-class ReaderTest extends \PHPUnit_Framework_TestCase
+class ReaderTest extends \PHPUnit\Framework\TestCase
 {
 	private $dataPath = "tests/data/TestData.csv"; // UTF-8, CR
 	private $dataNoFieldsPath = "tests/data/TestDataNoFields.csv"; // UTF-8, CR
