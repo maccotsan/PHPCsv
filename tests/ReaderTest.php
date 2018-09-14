@@ -102,6 +102,42 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 			"note" => ""
 		]
 	];
+
+	private $expectedFieldsWithoutLF = [
+		[
+			"col_string_en" => "csv read test data.",
+			"col_string_jp" => "CSVテストデータ。",
+			"col_number" => "12345678",
+			"col_number_conma" => "12,345,678 ",
+			"note" => "カンマ区切りの数値は\"\"で括られる。"
+		],
+		[
+			"col_string_en" => "minus data.",
+			"col_string_jp" => "マイナスデータ。",
+			"col_number" => "-12345678",
+			"col_number_conma" => "-12345678",
+			"note" => ""
+		],
+		[
+			"col_string_en" => "number function.",
+			"col_string_jp" => "数値書式。",
+			"col_number" => "12345678 ",
+			"col_number_conma" => "12,345,678 ",
+			"note" => "数値書式の場合、CSV出力すると後ろに半角スペースが自動挿入される"
+		],
+		[
+			"col_string_en" => "user function.",
+			"col_string_jp" => "ユーザ定義。",
+			"col_number" => "12345678",
+			"col_number_conma" => "12,345,678",
+			"note" => "半角スペースを取る場合の書式設定"
+		],
+		[
+			"col_string_en" => "new line.",
+			"col_string_jp" => "改行。",
+			"col_number" => "1234 5678",
+			"col_number_conma" => "12,345 678",
+			"note" => ""
 		]
 	];
 
@@ -309,5 +345,21 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 		$buf = file_get_contents($this->dataPath);
 		$csvRows = Reader::readFromString($buf);
 		$this->assertEquals($this->expectedPlain, $csvRows);
+	}
+
+	/**
+	 * フィルタ適用テスト
+	 */
+	public function testReadFilter()
+	{
+		// 内容一致
+		$csvRows = Reader::read($this->dataPath, [
+			'srcEncoding' => 'utf-8',
+			'useHeader' => true,
+			'filter' => function($field, $value) {
+				return str_replace("\n", " ", $value);
+			}
+		]);
+		$this->assertEquals($this->expectedFieldsWithoutLF, $csvRows);
 	}
 }

@@ -26,7 +26,9 @@ class Reader
 		'useHeader' => false, // ヘッダ行をフィールド名として利用するかどうか
 		'fields' => [], // 任意のフィールド名を利用する場合に指定する
 		'ignoreHeader' => false, // ヘッダ行を無視するかどうか
-		'ignoreEmptyRow' => false		// すべての列が空の行を無視するかどうか（0を含む）
+		'ignoreEmptyRow' => false, // すべての列が空の行を無視するかどうか（0を含む）
+		// TODO: useHeader=falseの場合でもfilterが利用できるようにする
+		'filter' => null // 値を加工するためのフィルタ関数。引数は配列で、'field'と'value'を取ります。useHeaderがtrue、もしくはfieldsを利用する場合に限りコールされることに注意してください。
 	];
 
 	/**
@@ -101,11 +103,11 @@ class Reader
 
 	 	if ($options['fields'] !== []) {
 			// 任意のフィールド名を指定。
-			$rows = self::setFieldKeys($rows, $options['fields']);
-		} elseif ($options['useHeader'] && !$options['ignoreHeader']) {
+			$rows = self::setFieldKeys($rows, $options['fields'], $options['filter']);
+		} else if ($options['useHeader'] && !$options['ignoreHeader']) {
 			// ヘッダ行をフィールド名として使用する。
 			$fields = array_shift($rows);
-			$rows = self::setFieldKeys($rows, $fields);
+			$rows = self::setFieldKeys($rows, $fields, $options['filter']);
 		}
 
 		return $rows;
@@ -116,19 +118,24 @@ class Reader
 	 *
 	 * @param array $rows CSV配列
 	 * @param array $fields フィールド名の配列
+	 * @param function $filter フィルタ関数
 	 * @return array CSV配列
 	 */
-	private static function setFieldKeys($rows, $fields)
+	private static function setFieldKeys($rows, $fields, $filter)
 	{
 		$newRows = [];
 		foreach ($rows as $row) {
 			$newRow = [];
 			foreach ($fields as $i => $field) {
 				if (isset($row[$i])) {
-					$newRow[$field] = $row[$i];
+					$value = $row[$i];
 				} else {
-					$newRow[$field] = "";
+					$value = "";
 				}
+				if ($filter !== null) {
+					$value = call_user_func_array($filter, [ $field, $value ]);
+				}
+				$newRow[$field] = $value;
 			}
 			$newRows[] = $newRow;
 		}
