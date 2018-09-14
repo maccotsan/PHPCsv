@@ -55,6 +55,13 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 			"12345678",
 			"12,345,678",
 			"半角スペースを取る場合の書式設定"
+		],
+		[
+			"new line.",
+			"改行。",
+			"1234\n5678",
+			"12,345\n678",
+			""
 		]
 	];
 
@@ -86,6 +93,15 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 			"col_number" => "12345678",
 			"col_number_conma" => "12,345,678",
 			"note" => "半角スペースを取る場合の書式設定"
+		],
+		[
+			"col_string_en" => "new line.",
+			"col_string_jp" => "改行。",
+			"col_number" => "1234\n5678",
+			"col_number_conma" => "12,345\n678",
+			"note" => ""
+		]
+	];
 		]
 	];
 
