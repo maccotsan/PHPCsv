@@ -42,7 +42,7 @@
 			"phpcs --standard=ruleset.xml src/* tests/*"
 		],
         "doc": [
-            "vendor/bin/phpdoc -d src -t docs --template=abstract"
+            "php vendor/bin/phpDocumentor.phar -d src -t docs --template=abstract"
         ]
     }
 }

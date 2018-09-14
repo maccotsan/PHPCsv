@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project title="API Documentation" version="2.8.5">
+<project title="API Documentation" version="v2.9.0">
   <partials/>
-  <file path="Reader.php" generated-path="Reader.html" hash="c7c218d4dc2c022dac5b57e6abdb1c03" package="Default">
+  <file path="Reader.php" generated-path="Reader.html" hash="44e22c5037b999cc612ee159255b247e" package="Default">
     <docblock line="0">
       <description>maccotsan/Csv</description>
       <long-description></long-description>
@@ -23,7 +23,7 @@
       <property static="true" visibility="private" namespace="maccotsan\Csv" line="23" package="maccotsan\Reader">
         <name>$readOptionDefaults</name>
         <full_name>\maccotsan\Csv\Reader::readOptionDefaults</full_name>
-        <default>array('srcEncoding' =&gt; 'sjis-win', 'dstEncording' =&gt; 'utf-8', 'useHeader' =&gt; false, 'fields' =&gt; array(), 'ignoreHeader' =&gt; false, 'ignoreEmptyRow' =&gt; false)</default>
+        <default>array('srcEncoding' =&gt; 'sjis-win', 'dstEncording' =&gt; 'utf-8', 'useHeader' =&gt; false, 'fields' =&gt; array(), 'ignoreHeader' =&gt; false, 'ignoreEmptyRow' =&gt; false, 'filter' =&gt; null)</default>
         <docblock line="23">
           <description></description>
           <long-description></long-description>
@@ -32,19 +32,19 @@
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="39" package="maccotsan\Reader">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="41" package="maccotsan\Reader">
         <name>read</name>
         <full_name>\maccotsan\Csv\Reader::read()</full_name>
-        <docblock line="39">
+        <docblock line="41">
           <description>CSVをファイルから読み込む。</description>
           <long-description></long-description>
-          <tag name="param" line="39" description="&lt;p&gt;ファイルパス&lt;/p&gt;" type="string" variable="$filePath">
+          <tag name="param" line="41" description="&lt;p&gt;ファイルパス&lt;/p&gt;" type="string" variable="$filePath">
             <type>string</type>
           </tag>
-          <tag name="param" line="39" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+          <tag name="param" line="41" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
             <type>array</type>
           </tag>
-          <tag name="return" line="39" description="CSV配列" type="array">
+          <tag name="return" line="41" description="CSV配列" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -59,19 +59,19 @@
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="54" package="maccotsan\Reader">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="maccotsan\Csv" line="56" package="maccotsan\Reader">
         <name>readFromString</name>
         <full_name>\maccotsan\Csv\Reader::readFromString()</full_name>
-        <docblock line="54">
+        <docblock line="56">
           <description>CSVを文字列から読み込む</description>
           <long-description></long-description>
-          <tag name="param" line="54" description="&lt;p&gt;CSV文字列&lt;/p&gt;" type="string" variable="$buf">
+          <tag name="param" line="56" description="&lt;p&gt;CSV文字列&lt;/p&gt;" type="string" variable="$buf">
             <type>string</type>
           </tag>
-          <tag name="param" line="54" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+          <tag name="param" line="56" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
             <type>array</type>
           </tag>
-          <tag name="return" line="54" description="CSV配列" type="array">
+          <tag name="return" line="56" description="CSV配列" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -86,19 +86,19 @@
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="89" package="maccotsan\Reader">
+      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="91" package="maccotsan\Reader">
         <name>postProcessing</name>
         <full_name>\maccotsan\Csv\Reader::postProcessing()</full_name>
-        <docblock line="89">
+        <docblock line="91">
           <description>読み込み後の加工を行う</description>
           <long-description></long-description>
-          <tag name="param" line="89" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
+          <tag name="param" line="91" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
             <type>array</type>
           </tag>
-          <tag name="param" line="89" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
+          <tag name="param" line="91" description="&lt;p&gt;読み込みオプション&lt;/p&gt;" type="array" variable="$options">
             <type>array</type>
           </tag>
-          <tag name="return" line="89" description="CSV配列" type="array">
+          <tag name="return" line="91" description="CSV配列" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -113,19 +113,22 @@
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="121" package="maccotsan\Reader">
+      <method final="false" abstract="false" static="true" visibility="private" namespace="maccotsan\Csv" line="124" package="maccotsan\Reader">
         <name>setFieldKeys</name>
         <full_name>\maccotsan\Csv\Reader::setFieldKeys()</full_name>
-        <docblock line="121">
+        <docblock line="124">
           <description>カラムをフィールド名=&gt;値の形式に変換する。</description>
           <long-description></long-description>
-          <tag name="param" line="121" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
+          <tag name="param" line="124" description="&lt;p&gt;CSV配列&lt;/p&gt;" type="array" variable="$rows">
             <type>array</type>
           </tag>
-          <tag name="param" line="121" description="&lt;p&gt;フィールド名の配列&lt;/p&gt;" type="array" variable="$fields">
+          <tag name="param" line="124" description="&lt;p&gt;フィールド名の配列&lt;/p&gt;" type="array" variable="$fields">
             <type>array</type>
           </tag>
-          <tag name="return" line="121" description="CSV配列" type="array">
+          <tag name="param" line="124" description="&lt;p&gt;フィルタ関数&lt;/p&gt;" type="\maccotsan\Csv\function" variable="$filter">
+            <type>\maccotsan\Csv\function</type>
+          </tag>
+          <tag name="return" line="124" description="CSV配列" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -139,9 +142,17 @@
           <default></default>
           <type>array</type>
         </argument>
+        <argument line="0" by_reference="false">
+          <name>$filter</name>
+          <default></default>
+          <type>\maccotsan\Csv\function</type>
+        </argument>
       </method>
     </class>
-    <source>eJzFVl1vE0cUfV7/igFZxEYEQx+qyuCUKiRtVSpQgvpirGiymbWXrndXM+NEUYWU9VJIShAUUejHSygUGiJSVVQCSoAfM2ySPvEXeufDu7ZxAkWtKsXR7uy955659547c/TDsBHmSvv359B+1MS2HXCG/dIom4UFuXbMDsJ56tYbHL136PD7mQ06mj4eqzex6x20g+aIcvFcm/iMoNMNgj7/9DQ6Yd4L8FIEi1Iu5+MmYSG2SQZ4BoIeyeVaYHhmMvTGXY+cnD5LbH5Er2WGk5y6fv10EHhgb7iPepgxpHmjY4D8Ja53g08QPEOoCm4rU7PwVc6SCJb0msUUYUrxPNq+/0BEL7afb8B/0b4v4pui/UjE90T8UETrIr4o4u9Ee1XEayJeTBbuSP9SzgqpO4s5QYxj7tooTyHGyZC7gX+cOLjlcYYqqJqzrCFG7THfDmZgH0OoMoKG2FmXDc+5/tABVCp1xW8vjE5+oaLdEu07MmC0vnnjYvIAGD0U8YaIlyTeDOMSj2aALe4Mf9CPFr1Ini+LaG1z6XcRXRiAA5n+RCVGgTjYY0RBiPh7EcciXti+tSza1xSh28oNMrCUXL0sol9FdFNEd5PF1a3r8PyDaF8SEfytQiR4kOiOS7wZpqCrNYX78unTzfNXVE5fQ2xf68ZKVv5Iri5K7ssXk/Uf9aIEdet+QN+K9db5W9t3bwymplHGmiGfnwjmMhzLkjjgEj2BzQHRZBF2uby1+ic87w77amPxkNzE1TWo4qsNyG8N+jVtN1lXk8m0tJdEe6m79mKhLW11e4aY4ib0lmx+lHdAH6cwb6AehPhb0X7Sba77OR+oLmS7Nbb2ooS3qG/cgOJfX1+GHXf6uzUN2u60t9PybYmKZJsXUkIHsmjQ7LVizgKNWV1rCnuqSWidFBjxnHJ5gFAylKJMmpWfbjng25yesgN/llA+RYx+CjLwVJ1w+YUTn7OMSzGDqfZqpNb9pVuNNYhnWSYNmp5kN06Dpp47BUmlh5517rWyammpXumv6U4FlRsE59Tz/6jijrv8N0sJgtq8/kRpx0weENTohIhWYIhsPridPH4MMu9KWSSi+yI6L6dEdE8sRCfG5Ri4EotoUUpOaqTTH9nRcOZj4hOKvclWGAaUl8umb8ZOnlB7S7lQ4pRRg/OwXCrBYTiMqd1wZ8lBn3D5XrLZ7DCHn9prSYbipBlCLN4MZZ8VVMPkm4RjWIRqEtxU7ShXpmYwxwXlocycOepyohcOIMNDthuM/pnUTuJJaMDzyRzqOQ0LKlJ1qEVd06vKdHiEET7u4Tor9JiXyxNjHx2fgh4wuDSY09VUdGDmYbuBtGIQZijvytGX91yfFJGstuU6qHAYVSoVZActH+Lrb/v2oT3qsXqoBpZy3MJQlFWNftMTUTpbUpOu3yIyGujEMgyqNeCg3OUHqR/Lsb2Aka5c9WgwDBg/RQObMKa6U4LsLMLXTrz15JuV5NEvoEzF8EK/CI3AVHJ69PLfKLD3npBK8A2b1PKT9chGV8/pVzMl07JkDdfhGqSYZnmQd3rqdfw7TaJxoDU4oR02KVm1YBysPB5krsKmhdxDZJxCHuvlcykp1MfKXBNqaE9FjR0d4423BXMxUOMg3YLuHqkNCfoZmWf9ac3iaUKIwLHfSyi7FdV03++e/n90X3r57EV2XzLcNaE0o/2FfJvNaYis7qYG6nOfWEQbOMFddmUg0coI3G+lgJ79nGxA7teSO0ubV37qIvxuSjJ7HJSZ9W6ndxLSbikxhxgM1onBo1BRl6Mw629jnRr3DE61j2x0qoWOLmQfuQzoKNhq3q0VO586oFXtoQaisdGy0Z24s/XevcYuG61mU3q66hfdAVkDGBPVA+dyfwNUAIfO</source>
+    <markers>
+      <todo line="30">useHeader=falseの場合でもfilterが利用できるようにする</todo>
+    </markers>
+    <source>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</source>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="global" full_name="global"/>
