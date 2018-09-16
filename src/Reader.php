@@ -64,19 +64,22 @@ class Reader
 		// 改行コードがCRだと正常に読み込めないので、LFに揃える。
 		$buf = StringTool\GeneralSupport::convertEOL($buf);
 
+		// 通常では文字列やファイルストリームをSplFileObjectに変換することは出来ないので、一時ファイルのメタデータからファイルパスを取得して読み込む。
 		// ref: http://php-archive.net/php/csv-tsv-array/
 		$temp = tmpfile();
 		$meta = stream_get_meta_data($temp);
 		fwrite($temp, $buf);
 		rewind($temp);
 
-		$file = new SplFileObject($meta['uri']);
-		$file->setFlags(SplFileObject::READ_CSV);
+		$file = new SplFileObject($meta['uri'], 'r');
+		$file->setFlags(SplFileObject::READ_CSV | SplFileObject::SKIP_EMPTY | SplFileObject::READ_AHEAD);
 		$file->setCsvControl($options['delimiter']);
 
 		$rows = [];
 		foreach ($file as $i => $line) {
-			if (1 === count($line) && !$line[0]) { // 空行は無視
+			// 空行は無視
+			// TODO: SKIP_EMPTYが効かないために記述している
+			if (1 === count($line) && !$line[0]) {
 				continue;
 			}
 			$rows[] = $line;
