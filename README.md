@@ -29,6 +29,7 @@ $csvRows = Csv\Reader::read("data.csv", $options);
 ````
 
 #### Options
+* 'delimiter' default ',',              // 区切り文字
 * 'srcEncoding' default 'sjis-win'      // 読み込むCSVファイルの文字コード
 * 'dstEncording' default 'utf-8'        // 読み込み後に扱う文字コード
 * 'useHeader' default false             // ヘッダ列をフィールド名として利用するかどうか

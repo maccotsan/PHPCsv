@@ -2,6 +2,9 @@
 /**
  * maccotsan/Csv
  *
+ * Character-separated values file Reader and Writer.
+ * ref: https://ja.wikipedia.org/wiki/Comma-Separated_Values
+ *
  * @copyright 2016 maccotsan <maccotsan@gmail.com>
  * @license The MIT License (MIT)
  */
@@ -21,6 +24,7 @@ class Reader
 	 * @var array 読み込みオプションのデフォルト値
 	 */
 	private static $readOptionDefaults = [
+		'delimiter' => ',', // 区切り文字
 		'srcEncoding' => 'sjis-win', // 読み込むCSVファイルの文字コード
 		'dstEncording' => 'utf-8', // 読み込み後に扱う文字コード
 		'useHeader' => false, // ヘッダ行をフィールド名として利用するかどうか
@@ -68,6 +72,7 @@ class Reader
 
 		$file = new SplFileObject($meta['uri']);
 		$file->setFlags(SplFileObject::READ_CSV);
+		$file->setCsvControl($options['delimiter']);
 
 		$rows = [];
 		foreach ($file as $i => $line) {

@@ -19,6 +19,7 @@ class ReaderTest extends \PHPUnit\Framework\TestCase
 	private $dataEmptyRowPath = "tests/data/TestDataEmptyRow.csv"; // UTF-8, CR
 	private $dataIrregularPath = "tests/data/TestDataIrregular.csv"; // UTF-8, CR
 	private $dataFromExcelPath = "tests/data/TestDataFromExcel.csv"; // SJIS, CR+LF
+	private $dataFromExcelTabTextPath = "tests/data/TestDataFromExcelTabText.txt"; // SJIS, CR
 
 	private $expectedPlain = [
 		[
@@ -333,6 +334,24 @@ class ReaderTest extends \PHPUnit\Framework\TestCase
 
 		// 内容一致（ヘッダを無視してフィールド名を指定する）
 		$csvRows = Reader::read($this->dataFromExcelPath, ['ignoreHeader' => true, 'fields' => $this->testFields]);
+		$this->assertEquals($this->expectedFields, $csvRows);
+	}
+
+	/**
+	 * excelから生成したタブ区切りテキスト読み込み
+	 */
+	public function testReadFromExcelTabText()
+	{
+		// 内容一致
+		$csvRows = Reader::read($this->dataFromExcelTabTextPath, ['delimiter' => "\t"]);
+		$this->assertEquals($this->expectedPlain, $csvRows);
+
+		// 内容一致（ヘッダをフィールド名にする）
+		$csvRows = Reader::read($this->dataFromExcelTabTextPath, ['delimiter' => "\t", 'useHeader' => true]);
+		$this->assertEquals($this->expectedFields, $csvRows);
+
+		// 内容一致（ヘッダを無視してフィールド名を指定する）
+		$csvRows = Reader::read($this->dataFromExcelTabTextPath, ['delimiter' => "\t", 'ignoreHeader' => true, 'fields' => $this->testFields]);
 		$this->assertEquals($this->expectedFields, $csvRows);
 	}
 
